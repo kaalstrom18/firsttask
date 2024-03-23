@@ -1,0 +1,68 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="widty = device-width,initial-scale=1.0">
+        <title>WORLD CLOCK</title>
+        <style>
+            body{
+                font-family: Georgia;
+                text-align: center;
+                background-color: white;
+            
+            }
+            .clock{
+                margin: 20px;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                display: inline-block;
+                width: 200px;
+            }
+            .city{
+                font-weight: bold;
+                margin-bottom: 200px;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <p>Code Writin By Crpytic</p>
+        <h1>WORLD CLOCK</h1>
+        <div class="clock">
+            <span class="city"> New York (GMT -4)</span><br>
+                <span id="time1"></span>
+        </div>
+        <div class="clock">
+            <span class="city"> London (GMT +0)</span><br>
+                <span id="time2"></span>
+        </div>
+        <div class="clock">
+            <span class="city"> Tokoyo (GMT +9)</span><br>
+                <span id="time3"></span>
+        </div>
+        <div class="clock">
+            <span class="city"> Los angeles (GMT +-7)</span><br>
+                <span id="time4"></span>
+        </div>
+        <div class="clock">
+            <span class="city"> Sydney (GMT +11)</span><br>
+                <span id="time5"></span>
+        </div>
+        <script>
+            function updateTime(){
+                const now = new Date();
+                const timelines = [{id: "time1",offset:-4},
+                {id: "time2",offset:-4},
+                {id: "time3",offset:0},
+                {id: "time4",offset:11},
+                {id: "time5",offset:-7},];
+                timelines.forEach(zone =>{const localTime = new Date (now.getTime() + (zone.offset *60*60*1000));
+                    const clearTime = localTime.toLocaleTimeString('en-US', {hour:"numeric",minute:"numeric"});
+                document.getElementById(zone.id).textContent=clearTime;});
+            }
+            updateTime();
+            setInterval(updateTime,1000);
+        </script>
+    </body>
+
+</html>
